@@ -22,7 +22,10 @@ eval "$(rbenv init - --no-rehash)"
 # Rust
 PATH=~/.cargo/bin:$PATH
 
+# ENV
 PATH=$PATH:~/Tools
+EDITOR=nvim
+VISUAL=nvim
 
 # FZF
 export FZF_DEFAULT_COMMAND='ag --nocolor -g ""'
@@ -30,6 +33,9 @@ export FZF_DEFAULT_COMMAND='ag --nocolor -g ""'
 # Use Clang by default
 #export CC="/usr/bin/clang"
 #export CXX="/usr/bin/clang++"
+
+# GPG needs this for pinentry_tty
+export GPG_TTY=$(tty)
 
 #=============================================================================#
 # Aliases and convenience functions
@@ -99,14 +105,15 @@ alias ffmpeg-check-interlace="ffmpeg -filter:v idet -an -f rawvideo -y /dev/null
 
 # Misc
 alias work-vpn="sudo openvpn --config ~/Work/vpn-config.ovpn"
-alias restart-plasma="kquitapp plasmashell && sleep 3 && plasmashell --shut-up"
+alias restart-plasma="kquitapp5 plasmashell && sleep 3 && kstart5 plasmashell"
 alias kill-telepathy="ps -fA | egrep telepathy\\\\/ > >(cat) > >(awk '{ print \$2 }' | xargs -L1 kill)"
 alias pacfiles="locate .pacnew; locate .pacsave; locate .pacorig"
-alias music="ncmpcpp"
+alias oldlibs="sudo lsof +c 0 | grep -w DEL | awk '1 { print \$1 \": \" \$NF }' | sort -u"
+alias music='ncmpcpp'
 
 alias sc="sudo systemctl"
 alias scu="systemctl --user"
-alias p=yay
+alias p="yay"
 alias update="p -Syu"
 
 # Fix for Audacity PulseAudio support
