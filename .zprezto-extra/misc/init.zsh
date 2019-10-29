@@ -5,11 +5,14 @@
 setopt dvorak     # I use a Dvorak keyboard :)
 #export ASPELL_CONF="variety ize"   # Use Oxford English Dictionary spelling
 
-# SSH Keychain
-# NOTE: This is handled by zprezto now
-# HOSTNAME=`hostname`
-# keychain -Q -q ~/.ssh/id_dsa --agents ssh
-# [[ -f $HOME/.keychain/$HOSTNAME-sh ]] && source $HOME/.keychain/$HOSTNAME-sh
+# Load FZF config for ZSH
+if [[ -d /usr/share/fzf ]]; then
+  source /usr/share/fzf/completion.zsh
+  source /usr/share/fzf/key-bindings.zsh
+fi
+export FZF_DEFAULT_COMMAND='ag --nocolor -g ""'
+export FZF_DEFAULT_OPTS='--border'
+
 
 # yarn
 PATH=~/.yarn/bin:$PATH
@@ -26,9 +29,6 @@ PATH=~/.cargo/bin:$PATH
 PATH=$PATH:~/Tools
 EDITOR=nvim
 VISUAL=nvim
-
-# FZF
-export FZF_DEFAULT_COMMAND='ag --nocolor -g ""'
 
 # Use Clang by default
 #export CC="/usr/bin/clang"
