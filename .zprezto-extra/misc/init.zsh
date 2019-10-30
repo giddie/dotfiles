@@ -10,9 +10,12 @@ if [[ -d /usr/share/fzf ]]; then
   source /usr/share/fzf/completion.zsh
   source /usr/share/fzf/key-bindings.zsh
 fi
-export FZF_DEFAULT_COMMAND='ag --nocolor -g ""'
-export FZF_DEFAULT_OPTS='--border'
+export FZF_DEFAULT_COMMAND='rg --files'
+FZF_PREVIEW="[[ -f {} ]] && (bat --color=always {} || cat {})"
+export FZF_DEFAULT_OPTS="--border --preview '${FZF_PREVIEW}'"
 
+# Bat
+export BAT_THEME=OneHalfDark
 
 # yarn
 PATH=~/.yarn/bin:$PATH
@@ -37,6 +40,12 @@ VISUAL=nvim
 # GPG needs this for pinentry_tty
 export GPG_TTY=$(tty)
 
+# Elixir / Erlang
+export ERL_AFLAGS="-kernel shell_history enabled"
+
+# Fix for Audacity PulseAudio support
+export PULSE_LATENCY_MSEC=30
+
 #=============================================================================#
 # Aliases and convenience functions
 #=============================================================================#
@@ -54,9 +63,6 @@ function gvim-remote {
 }
 alias vim=nvim
 alias ecx='edit-compressed-xml'
-
-# Elixir / Erlang
-export ERL_AFLAGS="-kernel shell_history enabled"
 
 # Shortcuts for Rails Development
 alias r="rails"
@@ -111,10 +117,12 @@ alias pacfiles="locate .pacnew; locate .pacsave; locate .pacorig"
 alias oldlibs="sudo lsof +c 0 | grep -w DEL | awk '1 { print \$1 \": \" \$NF }' | sort -u"
 alias music='ncmpcpp'
 
+if (( $+commands[bat] )); then
+  alias cat=bat
+fi
+alias rgrep="/usr/bin/rg"  # I use an rg alias for Rails :p
+
 alias sc="sudo systemctl"
 alias scu="systemctl --user"
 alias p="yay"
 alias update="p -Syu"
-
-# Fix for Audacity PulseAudio support
-export PULSE_LATENCY_MSEC=30
