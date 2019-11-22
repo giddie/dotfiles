@@ -10,7 +10,7 @@ if [[ -d /usr/share/fzf ]]; then
   source /usr/share/fzf/completion.zsh
   source /usr/share/fzf/key-bindings.zsh
 fi
-export FZF_DEFAULT_COMMAND='rg --files'
+export FZF_DEFAULT_COMMAND='rg --files --hidden'
 FZF_PREVIEW="[[ -f {} ]] && (bat --color=always {} || cat {}) 2> /dev/null"
 export FZF_DEFAULT_OPTS="--border --preview '${FZF_PREVIEW}'"
 
