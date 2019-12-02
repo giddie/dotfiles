@@ -118,7 +118,7 @@ alias oldlibs="sudo lsof +c 0 | grep -w DEL | awk '1 { print \$1 \": \" \$NF }' 
 alias music='ncmpcpp'
 
 if (( $+commands[bat] )); then
-  alias cat=bat
+  alias cat="bat --plain"
 fi
 alias rgrep="/usr/bin/rg"  # I use an rg alias for Rails :p
 
