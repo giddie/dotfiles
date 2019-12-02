@@ -20,13 +20,9 @@ export BAT_THEME=OneHalfDark
 # yarn
 PATH=~/.yarn/bin:$PATH
 
-# rbenv
-PATH=~/.rbenv/bin:~/.gem/ruby/2.6.0/bin:$PATH
-eval "$(rbenv init - --no-rehash)"
-(rbenv rehash &) 2> /dev/null
-
-# Rust
-PATH=~/.cargo/bin:$PATH
+# asdf
+source "$HOME/.asdf/asdf.sh"
+source "$HOME/.asdf/completions/asdf.bash"
 
 # ENV
 PATH=$PATH:~/Tools
