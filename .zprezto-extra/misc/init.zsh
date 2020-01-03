@@ -106,6 +106,7 @@ function noise {
 alias ffmpeg-check-interlace="ffmpeg -filter:v idet -an -f rawvideo -y /dev/null -i "
 
 # Misc
+alias wiki="cd ~/Nextcloud/Documents/VimWiki/src && vim index.wiki"
 alias work-vpn="sudo openvpn --config ~/Work/vpn-config.ovpn"
 alias restart-plasma="kquitapp5 plasmashell && sleep 3 && kstart5 plasmashell"
 alias kill-telepathy="ps -fA | egrep telepathy\\\\/ > >(cat) > >(awk '{ print \$2 }' | xargs -L1 kill)"
