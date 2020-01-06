@@ -1,0 +1,22 @@
+[1]
+Description=Application settings for konsole
+clientmachine=localhost
+clientmachinematch=0
+shortcut=Ctrl+Shift+H - Ctrl+(1234)
+shortcutrule=3
+wmclass=konsole
+wmclasscomplete=false
+wmclassmatch=1
+
+[2]
+Description=Application settings for firefox
+clientmachine=localhost
+clientmachinematch=0
+shortcut=Ctrl+Shift+F
+shortcutrule=4
+wmclass=navigator firefox
+wmclasscomplete=true
+wmclassmatch=1
+
+[General]
+count=2
