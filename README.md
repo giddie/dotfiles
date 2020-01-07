@@ -4,48 +4,50 @@
 
 ```bash
 git clone --bare --recursive https://github.com/giddie/dotfiles ~/.dotfiles
-alias config='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME/'
 
-config config --local status.showUntrackedFiles no
+alias config="GIT_DIR=$HOME/.dotfiles GIT_WORK_TREE=$HOME $SHELL"
 
-config checkout
-config submodule update --init --recursive
+config
+git config --local status.showUntrackedFiles no
+git checkout
+git submodule update --init --recursive
+exit
 ```
 
 ## Tracking files
 
-To add  files to be tracked simply use the normal git commands via the alias.
+To add files to be tracked, invoke a subshell using the `config` alias, and use git as normal:
 
 ```bash
-config add .config/new-config-file
-config add .new-dotfile-to-track
-config commit -m 'Added new config files'
-config push
-
+config
+git add .config/new-config-file
+git add .new-dotfile-to-track
+git commit -m 'Added new config files'
+git push
+exit
 ```
 
 To remove a file from being tracked and keep it locally use
 
 ```bash
-config rm --cached .remove-this-dotfile
-config push
+git rm --cached .remove-this-dotfile
 ```
 
 I don't want README.md in my home directory. I can access it via Github/Gitlab
 web interface. So inform git the file hasn't changed, then remove it locally.
 
 ```bash
-config update-index --assume-unchanged README.md
+git update-index --assume-unchanged README.md
 rm README.md
 ```
 
-Should I wish to undo this to edit the file (I normally edit via Github/Gitlab)
+Should I wish to undo this to edit the file (I normally edit via Github/Gitlab),
 I can run the following:
 
 ```bash
-config update-index --no-assume-unchanged README.md
-config checkout README.md
-config add  README.md
-config commit -m 'Updated README.md'
-config push
+git update-index --no-assume-unchanged README.md
+git checkout README.md
+git add  README.md
+git commit -m 'Updated README.md'
+git push
 ```
