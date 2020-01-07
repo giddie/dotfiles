@@ -46,8 +46,8 @@ export PULSE_LATENCY_MSEC=30
 # Aliases and convenience functions
 #=============================================================================#
 
-# Config
-alias config="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+# Config - spawn a shell pointing git to the config repository
+alias config="GIT_DIR=$HOME/.dotfiles GIT_WORK_TREE=$HOME $SHELL"
 
 # Vim
 function gvim-remote {
