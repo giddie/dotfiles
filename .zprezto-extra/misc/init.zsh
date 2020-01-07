@@ -50,13 +50,6 @@ export PULSE_LATENCY_MSEC=30
 alias config="GIT_DIR=$HOME/.dotfiles GIT_WORK_TREE=$HOME $SHELL"
 
 # Vim
-function gvim-remote {
-  if (($# == 0)); then
-    gvim $@
-  else
-    gvim --remote-silent $@
-  fi
-}
 alias vim=nvim
 alias ecx='edit-compressed-xml'
 
@@ -67,27 +60,6 @@ alias rs="rails s -b 0.0.0.0"
 alias rc="rails c"
 alias rdb="rails db -p"
 alias be="bundle exec"
-function rdev {
-  daemons=(php-fpm postgresql)
-  case $1 in
-    "start")
-      for daemon in $daemons; do
-        sudo systemctl start $daemon.service
-      done
-      ;;
-    "stop")
-      for daemon in `echo $daemons | tac -s' '`; do
-        sudo systemctl stop $daemon.service
-      done
-      ;;
-    *)
-      echo "Usage: $0 {start|stop}"
-      ;;
-  esac
-}
-
-# SSH
-alias homerouter="ssh home.giddie.ddns.me.uk"
 
 # QGit
 function qgit { /usr/bin/qgit $@ & }
