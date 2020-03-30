@@ -40,7 +40,7 @@ export GPG_TTY=$(tty)
 export ERL_AFLAGS="-kernel shell_history enabled"
 
 # Fix for Audacity PulseAudio support
-export PULSE_LATENCY_MSEC=30
+export PULSE_LATENCY_MSEC=100
 
 #=============================================================================#
 # Aliases and convenience functions
