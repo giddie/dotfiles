@@ -54,12 +54,16 @@ alias vim=nvim
 alias ecx='edit-compressed-xml'
 
 # Shortcuts for Rails Development
-alias r="rails"
-alias rg="rails g"
-alias rs="rails s -b 0.0.0.0"
-alias rc="rails c"
-alias rdb="rails db -p"
-alias be="bundle exec"
+# alias r="rails"
+# alias rg="rails g"
+# alias rs="rails s -b 0.0.0.0"
+# alias rc="rails c"
+# alias rdb="rails db -p"
+# alias be="bundle exec"
+alias bdc="bin/docker-compose"
+alias app="bin/docker-app"
+alias rails="bin/docker-app rails"
+alias cap="bin/docker-cap"
 
 # QGit
 function qgit { /usr/bin/qgit $@ & }
@@ -90,7 +94,7 @@ alias music='ncmpcpp'
 if (( $+commands[bat] )); then
   alias cat="bat --plain"
 fi
-alias rgrep="/usr/bin/rg"  # I use an rg alias for Rails :p
+# alias rgrep="/usr/bin/rg"  # I use an rg alias for Rails :p
 
 alias sc="sudo systemctl"
 alias scu="systemctl --user"
