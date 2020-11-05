@@ -22,7 +22,9 @@ PATH=~/.yarn/bin:$PATH
 
 # asdf
 source "$HOME/.asdf/asdf.sh"
-source "$HOME/.asdf/completions/asdf.bash"
+fpath=(${ASDF_DIR}/completions $fpath)
+autoload -Uz compinit
+compinit
 
 # ENV
 PATH=$PATH:~/Tools
@@ -53,17 +55,10 @@ alias config="GIT_DIR=$HOME/.dotfiles GIT_WORK_TREE=$HOME $SHELL"
 alias vim=nvim
 alias ecx='edit-compressed-xml'
 
-# Shortcuts for Rails Development
-# alias r="rails"
-# alias rg="rails g"
-# alias rs="rails s -b 0.0.0.0"
-# alias rc="rails c"
-# alias rdb="rails db -p"
-# alias be="bundle exec"
-alias bdc="bin/docker-compose"
-alias app="bin/docker-app"
-alias rails="bin/docker-app rails"
-alias cap="bin/docker-cap"
+# Generic Docker
+alias dc="docker-compose"
+alias dcr="docker-compose run --rm"
+alias dce="docker-compose exec"
 
 # QGit
 function qgit { /usr/bin/qgit $@ & }
@@ -84,7 +79,6 @@ alias ffmpeg-check-interlace="ffmpeg -filter:v idet -an -f rawvideo -y /dev/null
 # Misc
 alias wiki="cd ~/Nextcloud/Documents/Wiki/src && vim index.md"
 alias wwiki="cd ~/Nextcloud/Documents/Wiki/src && vim work/index.md"
-alias work-vpn="sudo openvpn --config ~/Work/vpn-config.ovpn"
 alias restart-plasma="kquitapp5 plasmashell && sleep 3 && kstart5 plasmashell"
 alias kill-telepathy="ps -fA | egrep telepathy\\\\/ > >(cat) > >(awk '{ print \$2 }' | xargs -L1 kill)"
 alias pacfiles="locate .pacnew; locate .pacsave; locate .pacorig"
