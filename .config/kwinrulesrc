@@ -1,3 +1,6 @@
+[$Version]
+update_info=kwinrules.upd:replace-placement-string-to-enum,kwinrules.upd:use-virtual-desktop-ids
+
 [1]
 Description=Application settings for konsole
 clientmachine=localhost
@@ -20,3 +23,4 @@ wmclassmatch=1
 
 [General]
 count=2
+rules=1,2

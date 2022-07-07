@@ -1,15 +1,12 @@
 [$Version]
-update_info=kwin.upd:replace-scalein-with-scale,kwin.upd:port-minimizeanimation-effect-to-js,kwin.upd:port-scale-effect-to-js,kwin.upd:port-dimscreen-effect-to-js,kwin.upd:auto-bordersize
+update_info=kwin.upd:replace-scalein-with-scale,kwin.upd:port-minimizeanimation-effect-to-js,kwin.upd:port-scale-effect-to-js,kwin.upd:port-dimscreen-effect-to-js,kwin.upd:auto-bordersize,kwin.upd:animation-speed,kwin.upd:desktop-grid-click-behavior,kwin.upd:no-swap-encourage,kwin.upd:make-translucency-effect-disabled-by-default,kwin.upd:remove-flip-switch-effect,kwin.upd:remove-cover-switch-effect,kwin.upd:remove-cubeslide-effect,kwin.upd:remove-xrender-backend,kwin.upd:enable-scale-effect-by-default,kwin.upd:overview-group-plugin-id
 
 [Compositing]
-AnimationSpeed=3
-Backend=OpenGL
 Enabled=true
 GLColorCorrection=false
 GLCore=true
-GLPlatformInterface=egl
-GLPreferBufferSwap=a
-GLTextureFilter=2
+GLPlatformInterface=glx
+GLTextureFilter=1
 HiddenPreviews=5
 OpenGLIsUnsafe=false
 UnredirectFullscreen=false
@@ -21,6 +18,16 @@ Id_1=09292c7a-9dc2-4205-afdb-92cf1f45fcd1
 Id_2=a8d9992f-3923-4579-94bb-bbb2feb8ba3c
 Number=2
 Rows=1
+
+[DrmOutputs][dfddef59-e3db-5bc2-9eb9-fc9db34194e7][dfddef59-e3db-5bc2-9eb9-fc9db34194e7]
+BorderActivate=9
+BorderActivateCylinder=9
+BorderActivateSphere=9
+Mode=1920x1080_60008
+Scale=1
+TabBox=false
+TabBoxAlternative=false
+Transform=normal
 
 [Effect-CoverSwitch]
 TabBox=false
@@ -55,12 +62,52 @@ BorderActivate=1,7
 BorderActivateAll=9
 BorderActivateClass=9
 
+[Effect-Slide]
+SlideBackground=false
+
 [Effect-Zoom]
 InitialZoom=1
 
+[Effect-desktopgrid]
+BorderActivate=9
+
+[Effect-diminactive]
+Strength=15
+TabBox=false
+TabBoxAlternative=false
+
+[Effect-glide]
+GlideAngle=0
+
 [Effect-kwin4_effect_translucency]
-ComboboxPopups=90
-Menus=90
+ComboboxPopups=93
+Menus=93
+MoveResize=100
+
+[Effect-magiclamp]
+AnimationDuration=350
+
+[Effect-magnifier]
+InitialZoom=1
+
+[Effect-overview]
+BorderActivate=7
+
+[Effect-presentwindows]
+BorderActivate=1,7
+BorderActivateAll=9
+BorderActivateClass=9
+
+[Effect-slide]
+SlideBackground=false
+
+[Effect-windowview]
+BorderActivateAll=9
+
+[Effect-zoom]
+ComboboxPopups=93
+InitialZoom=1
+Menus=93
 MoveResize=100
 
 [ElectricBorders]
@@ -83,7 +130,6 @@ CommandActiveTitlebar3=Operations menu
 CommandAll1=Move
 CommandAll2=Toggle raise and lower
 CommandAll3=Resize
-CommandAllKey=Meta
 CommandAllWheel=Maximize/Restore
 CommandInactiveTitlebar1=Activate and raise
 CommandInactiveTitlebar2=Lower
@@ -101,20 +147,21 @@ NightTemperature=4000
 blurEnabled=true
 contrastEnabled=true
 coverswitchEnabled=true
-desktopchangeosdEnabled=false
+desktopchangeosdEnabled=true
 flipswitchEnabled=true
 glideEnabled=true
 highlightwindowEnabled=true
-kwin4_effect_fadeEnabled=false
+kwin4_effect_scaleEnabled=false
 kwin4_effect_squashEnabled=false
+kwin4_effect_translucencyEnabled=true
 magiclampEnabled=true
+mouseclickEnabled=true
 slidebackEnabled=true
 windowgeometryEnabled=false
 wobblywindowsEnabled=true
 
 [Script-desktopchangeosd]
 PopupHideDelay=1000
-TextOnly=false
 
 [TabBox]
 ActivitiesMode=1
@@ -147,16 +194,16 @@ SwitchingMode=0
 [Windows]
 ActiveMouseScreen=false
 AutoRaise=true
-AutoRaiseInterval=1000
+AutoRaiseInterval=1500
 AutogroupInForeground=true
 AutogroupSimilarWindows=false
 BorderSnapZone=10
 CenterSnapZone=0
 ClickRaise=true
-DelayFocusInterval=100
-ElectricBorderCooldown=1050
+DelayFocusInterval=500
+ElectricBorderCooldown=1000
 ElectricBorderCornerRatio=0.25
-ElectricBorderDelay=1000
+ElectricBorderDelay=500
 ElectricBorderMaximize=true
 ElectricBorderTiling=true
 ElectricBorders=1
@@ -184,4 +231,3 @@ BorderSizeAuto=false
 ButtonsOnLeft=MFS
 ButtonsOnRight=HIAX
 CloseOnDoubleClickOnMenu=false
-library=org.kde.breeze
