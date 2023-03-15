@@ -82,23 +82,35 @@ function noise {
 # Video
 alias ffmpeg-check-interlace="ffmpeg -filter:v idet -an -f rawvideo -y /dev/null -i "
 
+# Restic
+restic_nexcloud_env_file=~/Secrets/restic-nextcloud.env
+if [[ -f $restic_nexcloud_env_file ]]; then
+  # This is a wrapper to avoid the restic ENVs being exported to every process
+  # the shell invokes.
+  function restic {
+    $SHELL -c "source $restic_nexcloud_env_file && /usr/bin/env restic $@"
+  }
+fi
+
 # Misc
-alias wiki="cd ~/Nextcloud/Documents/Wiki/src && vim index.md"
-alias wwiki="cd ~/Nextcloud/Documents/Wiki/src && vim work/index.md"
 alias restart-plasma="kquitapp5 plasmashell && sleep 3 && kstart5 plasmashell"
 alias kill-telepathy="ps -fA | egrep telepathy\\\\/ > >(cat) > >(awk '{ print \$2 }' | xargs -L1 kill)"
 alias pacfiles="locate .pacnew; locate .pacorig"
 alias oldlibs="sudo lsof +c 0 | grep -w DEL | awk '1 { print \$1 \": \" \$NF }' | sort -u"
 alias music="ncmpcpp"
+alias files="ranger"
 alias projsplit="tmux split-window -h -l 71%"
+alias projmain="tmux resize-pane -x 71%"
 alias tmuxn="tmux new-session"
+alias freedisk="sudo ~/Tools/lvm-pool-usage"
+alias livebook="(sleep 2 && open http://localhost:31380) & docker run --rm -p 127.0.0.1:31380:8080 -p 127.0.0.1:31381:8081 -e LIVEBOOK_TOKEN_ENABLED=false --pull always -u $(id -u):$(id -g) -v ~/Nextcloud/Projects/Livebook:/data livebook/livebook"
 
 if (( $+commands[bat] )); then
   alias cat="bat --style=plain"
 fi
-# alias rgrep="/usr/bin/rg"  # I use an rg alias for Rails :p
 
+# System Updates
 alias sc="sudo systemctl"
 alias scu="systemctl --user"
 alias p="yay"
-alias update="p -Syu && flatpak update"
+alias update="p -Syu && flatpak update && flatpak remove --unused"
