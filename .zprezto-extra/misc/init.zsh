@@ -88,7 +88,7 @@ if [[ -f $restic_nexcloud_env_file ]]; then
   # This is a wrapper to avoid the restic ENVs being exported to every process
   # the shell invokes.
   function restic {
-    $SHELL -c "source $restic_nexcloud_env_file && /usr/bin/env restic $@"
+    $SHELL -c "source $restic_nexcloud_env_file && /usr/bin/env restic $*"
   }
 fi
 
