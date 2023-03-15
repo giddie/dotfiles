@@ -27,8 +27,10 @@ autoload -Uz compinit
 compinit
 
 # asdf-direnv
-export DIRENV_LOG_FORMAT=""
-source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
+if (( $+commands[asdf] )); then
+  export DIRENV_LOG_FORMAT=""
+  source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
+fi
 
 # ENV
 PATH=$PATH:~/Tools
