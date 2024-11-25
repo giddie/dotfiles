@@ -3,7 +3,7 @@
 	url = https://github.com/tmux-plugins/tpm
 [submodule ".vim-config"]
 	path = .vim-config
-	url = https://github.com:giddie/vim-config.git
+	url = https://github.com/giddie/vim-config.git
 [submodule ".zprezto"]
 	path = .zprezto
-	url = https://github.com:giddie/prezto
+	url = https://github.com/giddie/prezto
