@@ -12,13 +12,10 @@ if [[ -d /usr/share/fzf ]]; then
 fi
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
 FZF_PREVIEW="[[ -f {} ]] && (bat --color=always {} || cat {}) 2> /dev/null"
-export FZF_DEFAULT_OPTS="--border --preview '${FZF_PREVIEW}'"
+export FZF_DEFAULT_OPTS="--border --preview '${FZF_PREVIEW}' --bind ctrl-a:toggle-all --bind ctrl-p:toggle-preview"
 
 # Bat
 export BAT_THEME=OneHalfDark
-
-# yarn
-PATH=~/.yarn/bin:$PATH
 
 # asdf
 source "$HOME/.asdf/asdf.sh"
@@ -32,8 +29,19 @@ if (( $+commands[asdf] )); then
   source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
 fi
 
+# asdf-erlang
+export KERL_BUILD_DOCS=yes
+export KERL_INSTALL_HTMLDOCS=no
+export KERL_INSTALL_MANPAGES=no
+
 # ENV
-PATH=$PATH:~/Tools
+typeset -gU PATH path
+path=(
+  $HOME/.yarn/bin
+  $HOME/.cargo/bin
+  $path
+  $HOME/Tools
+)
 EDITOR=nvim
 VISUAL=nvim
 
@@ -64,13 +72,15 @@ alias ecx='edit-compressed-xml'
 
 # Generic Docker
 alias dc="docker-compose"
+alias dcu="docker-compose up --build"
 alias dcp="docker-compose --profile"
 alias dcr="docker-compose run --rm"
 alias dce="docker-compose exec"
 
-# QGit
+# QGit & Tig
 function qgit { /usr/bin/qgit $@ & }
 alias qgita="qgit --all"
+alias tiga="tig --all"
 
 # Noise (for concentration)
 # Valid parameters are: white, pink, brown; default is brown.
@@ -95,6 +105,7 @@ if [[ -f $restic_nexcloud_env_file ]]; then
 fi
 
 # Misc
+alias beep="echo -e '\a'"
 alias restart-plasma="kquitapp5 plasmashell && sleep 3 && kstart5 plasmashell"
 alias kill-telepathy="ps -fA | egrep telepathy\\\\/ > >(cat) > >(awk '{ print \$2 }' | xargs -L1 kill)"
 alias pacfiles="locate .pacnew; locate .pacorig"
@@ -105,7 +116,7 @@ alias projsplit="tmux split-window -h -l 71%"
 alias projmain="tmux resize-pane -x 71%"
 alias tmuxn="tmux new-session"
 alias freedisk="sudo ~/Tools/lvm-pool-usage"
-alias livebook="(sleep 2 && open http://localhost:31380) & docker run --rm -p 127.0.0.1:31380:8080 -p 127.0.0.1:31381:8081 -e LIVEBOOK_TOKEN_ENABLED=false --pull always -u $(id -u):$(id -g) -v ~/Nextcloud/Projects/Livebook:/data livebook/livebook"
+alias livebook="(sleep 2 && open http://localhost:31380) & docker run --rm -p 127.0.0.1:31380:8080 -p 127.0.0.1:31381:8081 -e LIVEBOOK_TOKEN_ENABLED=false --pull always -u $(id -u):$(id -g) -v ~/Nextcloud/Projects/Livebook:/data ghcr.io/livebook-dev/livebook"
 
 if (( $+commands[bat] )); then
   alias cat="bat --style=plain"

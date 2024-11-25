@@ -1,6 +1,9 @@
 [Appearance]
+AntiAliasFonts=true
 ColorScheme=NeoDark (No Insense)
-Font=Bitstream Vera Sans Mono,10,-1,5,50,0,0,0,0,0
+Font=Hack,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
+LineSpacing=0
+UseFontLineChararacters=false
 
 [General]
 Directory=/home/dannpg
@@ -9,7 +12,10 @@ LocalTabTitleFormat=%n %w
 Name=Shell
 Parent=FALLBACK/
 RemoteTabTitleFormat=%u@%H %w
+SemanticHints=2
+SemanticInputClick=false
 StartInCurrentSessionDir=false
+TerminalMargin=1
 
 [Interaction Options]
 MouseWheelZoomEnabled=false
@@ -20,3 +26,4 @@ ScrollBarPosition=2
 
 [Terminal Features]
 FlowControlEnabled=false
+VerticalLine=false
