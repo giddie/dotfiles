@@ -1,7 +1,7 @@
 [Appearance]
 AntiAliasFonts=true
 ColorScheme=NeoDark (No Insense)
-Font=Hack,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
+Font=Hack Nerd Font Mono,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
 LineSpacing=0
 UseFontLineChararacters=false
 

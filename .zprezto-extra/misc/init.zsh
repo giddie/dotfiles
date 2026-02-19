@@ -15,19 +15,9 @@ FZF_PREVIEW="[[ -f {} ]] && (bat --color=always {} || cat {}) 2> /dev/null"
 export FZF_DEFAULT_OPTS="--border --preview '${FZF_PREVIEW}' --bind ctrl-a:toggle-all --bind ctrl-p:toggle-preview"
 
 # Bat
-export BAT_THEME=OneHalfDark
+export BAT_THEME=ansi
 
 # asdf
-source "$HOME/.asdf/asdf.sh"
-fpath=(${ASDF_DIR}/completions $fpath)
-autoload -Uz compinit
-compinit
-
-# asdf-direnv
-if (( $+commands[asdf] )); then
-  export DIRENV_LOG_FORMAT=""
-  source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
-fi
 
 # asdf-erlang
 export KERL_BUILD_DOCS=yes
@@ -35,13 +25,23 @@ export KERL_INSTALL_HTMLDOCS=no
 export KERL_INSTALL_MANPAGES=no
 
 # ENV
+export XDG_DESKTOP_DIR=~/In
+export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
+
 typeset -gU PATH path
-path=(
-  $HOME/.yarn/bin
-  $HOME/.cargo/bin
-  $path
-  $HOME/Tools
-)
+if (( ! ${+DIRENV_DIR} )); then
+  path=(
+    $HOME/.local/bin
+    $HOME/.asdf/shims
+    $HOME/.yarn/bin
+    $HOME/.cargo/bin
+    $path
+  )
+fi
+
+# direnv
+eval "$(direnv hook zsh)"
+
 EDITOR=nvim
 VISUAL=nvim
 
@@ -66,16 +66,16 @@ export PULSE_LATENCY_MSEC=100
 alias config="GIT_DIR=$HOME/.dotfiles GIT_WORK_TREE=$HOME $SHELL"
 
 # Vim
-alias -g vim=nvim
-alias -g vimdiff=nvimdiff
+alias e=nvim
+alias ediff=nvimdiff
 alias ecx='edit-compressed-xml'
 
-# Generic Docker
-alias dc="docker-compose"
-alias dcu="docker-compose up --build"
-alias dcp="docker-compose --profile"
-alias dcr="docker-compose run --rm"
-alias dce="docker-compose exec"
+# Docker
+alias dc="docker compose"
+alias dcu="docker compose up --build"
+alias dcp="docker compose --profile"
+alias dcr="docker compose run --rm"
+alias dce="docker compose exec"
 
 # QGit & Tig
 function qgit { /usr/bin/qgit $@ & }
@@ -116,7 +116,7 @@ alias projsplit="tmux split-window -h -l 71%"
 alias projmain="tmux resize-pane -x 71%"
 alias tmuxn="tmux new-session"
 alias freedisk="sudo ~/Tools/lvm-pool-usage"
-alias livebook="(sleep 2 && open http://localhost:31380) & docker run --rm -p 127.0.0.1:31380:8080 -p 127.0.0.1:31381:8081 -e LIVEBOOK_TOKEN_ENABLED=false --pull always -u $(id -u):$(id -g) -v ~/Nextcloud/Projects/Livebook:/data ghcr.io/livebook-dev/livebook"
+alias rsync_cp="rsync --archive -hh --partial --info=stats1,progress2 --modify-window=1"
 
 if (( $+commands[bat] )); then
   alias cat="bat --style=plain"

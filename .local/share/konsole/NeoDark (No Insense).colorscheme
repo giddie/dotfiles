@@ -89,6 +89,12 @@ Color=186,186,186
 Color=186,186,186
 
 [General]
+Anchor=0.5,0.5
+Blur=false
+ColorRandomization=false
 Description=NeoDark (No Intense)
+FillStyle=Tile
 Opacity=1
 Wallpaper=
+WallpaperFlipType=NoFlip
+WallpaperOpacity=1
